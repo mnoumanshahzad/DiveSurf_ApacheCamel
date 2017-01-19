@@ -8,6 +8,9 @@ import java.util.Random;
 
 /**
  * Created by thomas on 1/15/17.
+ *
+ * Creates new files containing randomly
+ * generated orders
  */
 public class CallCenterOrderSystem {
 

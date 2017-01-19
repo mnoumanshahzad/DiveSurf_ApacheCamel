@@ -1,5 +1,6 @@
 package camel;
 
+import messageTranslators.CallCenterMessageTranslator;
 import org.apache.camel.builder.RouteBuilder;
 
 /**
@@ -12,19 +13,16 @@ public class MyRouteBuilder extends RouteBuilder {
      */
     public void configure() {
 
-        // here is a sample which processes the input files
-        // (leaving them in place - see the 'noop' flag)
-        // then performs content based routing on the message using XPath
+        //Call Center Orders routed from file to the queue
         from("file:src/data?noop=true")
-                .to("activemq:queue:WEB_NEW_ORDER");
-            /*.choice()
-                .when(xpath("/person/city = 'London'"))
-                    .log("UK message")
-                    .to("bean:CallCenterOrderSystem")
-                    //.to("file:target/messages/uk")
-                .otherwise()
-                    .log("Other message")
-                    .to("file:target/messages/others");*/
+                .split(body().tokenize("\n"))
+                .to("activemq:queue:CC_NEW_ORDER");
+
+        //Messages translated from CC_NEW_ORDER queue
+        //and passed to NEW_ORDER queue
+        from("activemq:CC_NEW_ORDER")
+                .process(new CallCenterMessageTranslator())
+                .to("activemq:NEW_ORDER");
     }
 
 }
