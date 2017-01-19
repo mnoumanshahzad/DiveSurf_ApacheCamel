@@ -1,6 +1,8 @@
 package camel;
 
+import camel.aggregators.ProcessedOrderAggregator;
 import messageTranslators.CallCenterMessageTranslator;
+import org.apache.camel.ExchangePattern;
 import org.apache.camel.builder.RouteBuilder;
 
 /**
@@ -23,6 +25,14 @@ public class MyRouteBuilder extends RouteBuilder {
         from("activemq:CC_NEW_ORDER")
                 .process(new CallCenterMessageTranslator())
                 .to("activemq:NEW_ORDER");
-    }
 
+        //New Orders passed to pub-sub channel
+        from("activemq:NEW_ORDER")
+                .to("activemq:topic:NEW_ORDER_TOPIC");
+
+        from("activemq:PROCESSED_ORDER")
+                .aggregate(header("order_id"),new ProcessedOrderAggregator())
+                .completionTimeout(500)
+                .to("activemq:final");
+    }
 }

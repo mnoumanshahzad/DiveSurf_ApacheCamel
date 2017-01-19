@@ -13,6 +13,8 @@ public class Order implements Serializable{
     int numberOfDivingSuits;
     int numberOfSurfBoards;
     int orderId;
+    boolean valid;
+    String validationResult;
 
     public int getCutomerId() {
         return cutomerId;
@@ -70,6 +72,22 @@ public class Order implements Serializable{
         this.orderId = orderId;
     }
 
+    public boolean isValid() {
+        return valid;
+    }
+
+    public void setValid(boolean valid) {
+        this.valid = valid;
+    }
+
+    public String getValidationResult() {
+        return validationResult;
+    }
+
+    public void setValidationResult(String validationResult) {
+        this.validationResult = validationResult;
+    }
+
     @Override
     public String toString() {
         return "Order{" +
@@ -80,6 +98,8 @@ public class Order implements Serializable{
                 ", numberOfDivingSuits=" + numberOfDivingSuits +
                 ", numberOfSurfBoards=" + numberOfSurfBoards +
                 ", orderId=" + orderId +
+                ", valid=" + valid +
+                ", validationResult='" + validationResult + '\'' +
                 '}';
     }
 }

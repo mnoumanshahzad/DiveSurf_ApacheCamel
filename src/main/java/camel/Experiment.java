@@ -19,7 +19,7 @@ public class Experiment {
             Connection connection = connectionFactory.createConnection();
 
             final Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-            Queue inQueue = session.createQueue("NEW_ORDER");
+            Queue inQueue = session.createQueue("final");
 
             MessageConsumer messageConsumer = session.createConsumer(inQueue);
 
