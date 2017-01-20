@@ -1,18 +1,10 @@
-package messageTranslators;
+package camel.messageTranslators;
 
 import bean.Order;
-import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 
-import javax.jms.*;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-
 /**
- * Created by nouman on 1/18/17.
  * Call Center Message Translator
  *
  * Implements the Processor interface

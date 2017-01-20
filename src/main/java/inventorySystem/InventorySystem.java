@@ -3,13 +3,18 @@ package inventorySystem;
 import bean.Order;
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.activemq.command.ActiveMQObjectMessage;
-import org.apache.activemq.command.MessageId;
 
 import javax.jms.*;
 import java.io.IOException;
 
 /**
- * Created by nouman on 1/19/17.
+ * Inventory System
+ *
+ * Maintins an initial inventory of 50 items each
+ *
+ * Decrements inventory when order received
+ *
+ * Invalidates orders when Inventory exhausts
  */
 public class InventorySystem {
 

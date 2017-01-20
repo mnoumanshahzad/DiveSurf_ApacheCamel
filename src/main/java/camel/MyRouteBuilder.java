@@ -1,8 +1,7 @@
 package camel;
 
 import camel.aggregators.ProcessedOrderAggregator;
-import messageTranslators.CallCenterMessageTranslator;
-import org.apache.camel.ExchangePattern;
+import camel.messageTranslators.CallCenterMessageTranslator;
 import org.apache.camel.builder.RouteBuilder;
 
 /**
@@ -30,9 +29,16 @@ public class MyRouteBuilder extends RouteBuilder {
         from("activemq:NEW_ORDER")
                 .to("activemq:topic:NEW_ORDER_TOPIC");
 
+        //Orders passed down an aggregator
+        //Result of aggregator then split into
+        //two new queues
         from("activemq:PROCESSED_ORDER")
                 .aggregate(header("order_id"),new ProcessedOrderAggregator())
                 .completionTimeout(500)
-                .to("activemq:final");
+                .choice()
+                    .when(header("valid"))
+                    .to("activemq:VALID")
+                .otherwise()
+                .to("activemq:INVALID");
     }
 }

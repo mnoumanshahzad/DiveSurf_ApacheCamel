@@ -99,10 +99,70 @@
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>exec-maven-plugin</artifactId>
         <version>1.5.0</version>
-        <configuration>
+
+        <executions>
+          <execution>
+            <id>BillingSystem</id>
+            <goals>
+              <goal>java</goal>
+            </goals>
+            <configuration>
+              <mainClass>billingSystem.BillingSystem</mainClass>
+              <includePluginDependencies>false</includePluginDependencies>
+            </configuration>
+          </execution>
+
+          <execution>
+            <id>InventorySystem</id>
+            <goals>
+              <goal>java</goal>
+            </goals>
+            <configuration>
+              <mainClass>inventorySystem.InventorySystem</mainClass>
+              <includePluginDependencies>false</includePluginDependencies>
+            </configuration>
+          </execution>
+
+          <execution>
+            <id>ResultSystem</id>
+            <goals>
+              <goal>java</goal>
+            </goals>
+            <configuration>
+              <mainClass>resultSystem.ResultSystem</mainClass>
+              <includePluginDependencies>false</includePluginDependencies>
+            </configuration>
+          </execution>
+
+          <execution>
+            <id>CallCenter</id>
+            <goals>
+              <goal>java</goal>
+            </goals>
+            <configuration>
+              <mainClass>callCenterOrderSystem.CallCenterOrderSystem</mainClass>
+              <includePluginDependencies>false</includePluginDependencies>
+            </configuration>
+          </execution>
+
+          <execution>
+            <id>ApacheCamel</id>
+            <goals>
+              <goal>java</goal>
+            </goals>
+            <configuration>
+              <mainClass>camel.MainApp</mainClass>
+              <includePluginDependencies>false</includePluginDependencies>
+            </configuration>
+          </execution>
+
+        </executions>
+
+
+        <!--<configuration>
           <mainClass>camel.MainApp</mainClass>
           <includePluginDependencies>false</includePluginDependencies>
-        </configuration>
+        </configuration>-->
       </plugin>
 
     </plugins>

@@ -3,7 +3,7 @@ package bean;
 import java.io.Serializable;
 
 /**
- * Created by nouman on 1/19/17.
+ * Java Bean for Orders
  */
 public class Order implements Serializable{
     int cutomerId;

@@ -5,7 +5,9 @@ import org.apache.camel.Exchange;
 import org.apache.camel.processor.aggregate.AggregationStrategy;
 
 /**
- * Created by nouman on 1/19/17.
+ * Orders matched based on the header property order_id
+ *
+ * Decides if the order is valid or invalid
  */
 public class ProcessedOrderAggregator implements AggregationStrategy {
     @Override
@@ -18,12 +20,14 @@ public class ProcessedOrderAggregator implements AggregationStrategy {
         Order order2 = (Order)exchange1.getIn().getBody();
 
         if (order1.isValid() && order2.isValid()) {
+            exchange.setProperty("valid", true);
             return exchange;
         }
 
         else {
             order1.setValidationResult(order1.getValidationResult() + " -- " + order2.getValidationResult());
             exchange.getIn().setBody(order1);
+            exchange.setProperty("invalid", true);
             return exchange;
         }
     }

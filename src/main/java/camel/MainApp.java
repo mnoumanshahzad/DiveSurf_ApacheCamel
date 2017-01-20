@@ -9,7 +9,7 @@ import org.apache.camel.impl.DefaultCamelContext;
 public class MainApp {
 
     /**
-     * A main() so we can easily run these routing rules in our IDE
+     * Apache Camel main
      */
     public static void main(String... args) throws Exception {
 

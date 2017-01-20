@@ -3,14 +3,19 @@ package billingSystem;
 import bean.Order;
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.activemq.command.ActiveMQObjectMessage;
-import org.apache.activemq.command.MessageId;
 
 import javax.jms.*;
 import java.io.IOException;
 import java.util.Random;
 
 /**
- * Created by nouman on 1/19/17.
+ * Billing System
+ *
+ * Reads from the topic --> NEW_ORDER_TOPIC
+ *
+ * Randomly validates or invalidates orders
+ *
+ * Send orders downs the PROCESSED_ORDER queue
  */
 public class BillingSystem {
 
